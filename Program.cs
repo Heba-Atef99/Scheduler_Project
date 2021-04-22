@@ -21,7 +21,7 @@ namespace ConsoleApp1
             for (int i = 0; i < num_process; i++)
             {
                 //initialize the process
-                mat_process[i] = new Process(0, 0, 0);
+                mat_process[i] = new Process(0, 0, 0,0);
 
                 Console.WriteLine("\n...Process {0}...", i + 1);
 
@@ -33,6 +33,10 @@ namespace ConsoleApp1
 
                 Console.WriteLine("Enter Burst Time: ");
                 mat_process[i].set_Burst_Time(Convert.ToInt32(Console.ReadLine()));
+
+               
+                Console.WriteLine("Priority: ");
+                mat_process[i].set_Priority(Convert.ToInt32(Console.ReadLine()));
             }
             SFJ_Preemptive(mat_process, scheduler_history);
 

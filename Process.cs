@@ -8,17 +8,20 @@ namespace ConsoleApp1
     {
 
         private int Process_ID; // Process ID
-        private int Burst_Time; // Burst Time
         private int Arrival_Time; // Arrival Time
+        private int Burst_Time; // Burst Time
+        
+        private int Priority;
 
 
 
-
-        public Process(int Process_ID, int Burst_Time, int Arrival_Time)
+        public Process(int Process_ID, int Arrival_Time, int Burst_Time , int Priority)
         {
             this.Process_ID = Process_ID;
-            this.Burst_Time = Burst_Time;
             this.Arrival_Time = Arrival_Time;
+            this.Burst_Time = Burst_Time;
+            
+            this.Priority = Priority;
         }
         public void set_Process_ID(int Process_ID)
         {
@@ -43,6 +46,14 @@ namespace ConsoleApp1
         public int get_Arrival_Time()
         {
             return this.Arrival_Time;
+        }
+        public void set_Priority(int Priority)
+        {
+            this.Priority= Priority;
+        }
+        public int get_Priority()
+        {
+            return this.Priority;
         }
 
     }
