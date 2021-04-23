@@ -21,7 +21,7 @@ namespace ConsoleApp1
             for (int i = 0; i < num_process; i++)
             {
                 //initialize the process
-                mat_process[i] = new Process(0, 0, 0,0);
+                mat_process[i] = new Process(0, 0, 0,0,0);
 
                 Console.WriteLine("\n...Process {0}...", i + 1);
 
