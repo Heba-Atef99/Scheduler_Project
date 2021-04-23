@@ -63,6 +63,52 @@ namespace ConsoleApp1
             //Console.ReadLine();
 
         }
+ static void SFJ_non_Preemptive(Process[] mat_process, int[,] scheduler_history)
+        {
+            int number = 0;
+            Process Current_process = new Process(0, 0, 0,0,0);
+            Current_process = mat_process[0];
+            int End_time=0;
+            int Count = 0;
+            for (int j = Count; j < mat_process.Length; j++)
+            {
+                for (int i = Count; i < mat_process.Length; i++)
+                {
+                    if (mat_process[i].get_Arrival_Time()<= End_time)
+                    {
+                        Current_process = mat_process[i];
+                        number = i;
+                        break;
+                    }
+
+                }
+                for (int i = Count; i < mat_process.Length; i++)
+                {
+                    if (mat_process[i].get_Arrival_Time() <= End_time && mat_process[i].get_Burst_Time() < Current_process.get_Burst_Time())
+                    {
+                        Current_process = mat_process[i];
+                        number = i;
+                    }
+
+                }
+                scheduler_history[Count, 0] = Current_process.get_Process_ID();
+                scheduler_history[Count, 1] = End_time;
+                mat_process[number].set_Waiting_Time(End_time  - mat_process[number].get_Arrival_Time());
+                End_time = End_time + Current_process.get_Burst_Time();
+                scheduler_history[Count, 2] = End_time;               
+                Swap(ref mat_process[number], ref mat_process[Count]);
+                Count++;
+
+            }
+        }
+        //swap function
+        public static void Swap(ref Process num1, ref Process num2)
+        {
+            Process newnum = new Process(0,0,0,0,0);
+            newnum = num1;
+            num1 = num2;
+            num2 = newnum;       
+        }
     }
 }
 
