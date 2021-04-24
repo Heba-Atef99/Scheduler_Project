@@ -37,8 +37,7 @@ namespace ConsoleApp1
 
                 Console.WriteLine("Priority: ");
                 mat_process[i].set_Priority(Convert.ToInt32(Console.ReadLine()));
-                Console.WriteLine("Waiting Time: ");
-                mat_process[i].set_Priority(Convert.ToInt32(Console.ReadLine()));
+             
             }
            /* 
              Process[] mat_process = new Process[4];
@@ -145,7 +144,15 @@ namespace ConsoleApp1
             for (int i = 0; i < num_process; i++)
             {
                 
+               
                 Console.WriteLine(" " + scheduler_history[i, 0] + "\t\t" + scheduler_history[i, 1] + "\t\t " + scheduler_history[i, 2]);
+
+            }
+            for (int i = 0; i < num_process; i++)
+            {
+
+
+                Console.WriteLine(mat_process[i].get_Waiting_Time());
 
             }
         }
