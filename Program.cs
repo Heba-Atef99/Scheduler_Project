@@ -131,6 +131,35 @@ namespace ConsoleApp1
             num1 = num2;
             num2 = newnum;       
         }
+       static void First_come_first_served(Process[] mat_process, float[,] scheduler_history)
+        {
+            mat_process = mat_process.OrderBy(process => process.get_Arrival_Time()).ToArray();
+            
+           
+            float End_time = 0;
+            
+            for(int i=0;i< mat_process.Length; i++)
+            {
+                if(mat_process[i].get_Arrival_Time()<= End_time)
+                {
+                    scheduler_history[i , 0] = mat_process[i].get_Process_ID();
+                    scheduler_history[i, 1] = End_time;
+                    mat_process[i].set_Waiting_Time(End_time - mat_process[i].get_Arrival_Time());
+                    End_time = End_time + mat_process[i].get_Burst_Time();
+                    scheduler_history[i, 2] = End_time;
+                }
+                else
+                {
+                    scheduler_history[i, 0] = mat_process[i].get_Process_ID();
+                    End_time = mat_process[i].get_Arrival_Time();
+                    scheduler_history[i, 1] = End_time;
+                    mat_process[i].set_Waiting_Time(End_time - mat_process[i].get_Arrival_Time());
+                    End_time = End_time + mat_process[i].get_Burst_Time();
+                    scheduler_history[i, 2] = End_time;
+                }
+            }
+
+        }
     }
 }
 
