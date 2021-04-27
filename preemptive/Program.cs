@@ -258,7 +258,7 @@ namespace ConsoleApp1
             float first_start = get_waiting_time[0].start;
             int j = 1;
 
-            while (get_waiting_time.Count != 1)
+            while (get_waiting_time.Count > 1)
             {
                 j = 1;
                 is_last_repeated = 0;
@@ -273,18 +273,20 @@ namespace ConsoleApp1
                     waiting_time += (get_waiting_time[j].start - get_waiting_time[j - 1].end);
                     j++;
                     is_last_repeated = 1;
+
+                    if (j >= get_waiting_time.Count) break;
                 }
                 //save it in the process
                 Array.Find(mat_process, p => p.get_Process_ID() == id).set_Waiting_Time(waiting_time);
 
                 //remove all elements with same id
-                get_waiting_time.RemoveRange(0, j - 1);
+                get_waiting_time.RemoveRange(0, j);
                 //update id
-                id = get_waiting_time[0].process_id;
+                if(get_waiting_time.Count > 0) id = get_waiting_time[0].process_id;
             }
 
             //for the last element in the list
-            if (is_last_repeated != 1)
+            if (is_last_repeated != 1 && get_waiting_time.Count > 0)
             {
                 //calculate the waiting time of the last element if it is not repeated
                 waiting_time = get_waiting_time[0].start - Array.Find(mat_process, p => p.get_Process_ID() == id).get_Arrival_Time();
@@ -308,9 +310,6 @@ namespace ConsoleApp1
                 Console.WriteLine("Process Id: {0} ,, waiting time {1}", mat_process[i].get_Process_ID(), mat_process[i].get_Waiting_Time());
                 Console.WriteLine("\n");
             }
-
-
-
         }
     }
 }
