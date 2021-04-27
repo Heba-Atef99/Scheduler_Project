@@ -294,64 +294,6 @@ namespace ConsoleApp1
                 //save that waiting time
                 Array.Find(mat_process, p => p.get_Process_ID() == id).set_Waiting_Time(waiting_time);
             }
-
-            for (int i = 0; i < scheduler_history.Count; i++)
-            {
-                Console.WriteLine("\n");
-                Console.WriteLine("Process Id: {0}", scheduler_history[i].process_id);
-                Console.WriteLine("Start Time: {0}", scheduler_history[i].start);
-                Console.WriteLine("End Time: {0}", scheduler_history[i].end);
-                Console.WriteLine("\n");
-            }
-
-            for (int i = 0; i < mat_process.Length; i++)
-            {
-                Console.WriteLine("\n");
-                Console.WriteLine("Process Id: {0} ,, waiting time {1}", mat_process[i].get_Process_ID(), mat_process[i].get_Waiting_Time());
-                Console.WriteLine("\n");
-            }
         }
     }
 }
-
-/*
-while (get_waiting_time.Count != 1)
-{
-    if (get_waiting_time[1].process_id == id)
-    {
-        //calculate the waiting time for repeated process
-        //waiting time = (start of next same process - end of last same process) + (start of first time for process - arrival)
-        waiting_time += ((get_waiting_time[1].start - get_waiting_time[0].end) + (first_start - Array.Find(mat_process, p => p.get_Process_ID() == id).get_Arrival_Time()));
-
-        //save that waiting time
-        Array.Find(mat_process, p => p.get_Process_ID() == id).set_Waiting_Time(waiting_time);
-
-        is_last_repeated = 1;
-    }
-    else
-    {
-        //check if the first element is repeated or not
-        if (is_last_repeated == 1)
-        {
-            get_waiting_time.RemoveAt(0);
-            //update id
-            id = get_waiting_time[0].process_id;
-        }
-
-        //calculate the waiting time for un-repeated process
-        //waiting time = start of current process - arrival time for that process
-        waiting_time = get_waiting_time[0].start - Array.Find(mat_process, p => p.get_Process_ID() == id).get_Arrival_Time();
-
-        //save that waiting time
-        Array.Find(mat_process, p => p.get_Process_ID() == id).set_Waiting_Time(waiting_time);
-
-        is_last_repeated = 0;
-        waiting_time = 0;
-        first_start = get_waiting_time[1].start;
-    }
-
-    //remove the first element from list
-    get_waiting_time.RemoveAt(0);
-    //update id
-    id = get_waiting_time[0].process_id;
-}*/
