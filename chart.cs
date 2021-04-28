@@ -33,6 +33,8 @@ namespace Scheduler_GUI
                 case "FCFS":
                     index = Int32.Parse(main_form.no_of_processes);
                     counter = index;
+                    avgwait = SJF_FCFS.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
                     for (int k = 0; k < counter; k++)
                     {
                         for (int j = 0; j < 3; j++)
@@ -44,6 +46,8 @@ namespace Scheduler_GUI
                 case "SJF Nonpreemtive":
                     index = Int32.Parse(main_form.no_of_processes);
                     counter = index;
+                    avgwait = SJF_FCFS.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
                     for (int k = 0; k < counter; k++)
                     {
                         for (int j = 0; j < 3; j++)
@@ -55,6 +59,8 @@ namespace Scheduler_GUI
                 case "SJF Preemtive":
                     index = Int32.Parse(main_form.no_of_processes);
                     counter = SJF_FCFS.counter;
+                    avgwait = SJF_FCFS.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
                     for (int k = 0; k < counter; k++)
                     {
                         for (int j = 0; j < 3; j++)
@@ -78,8 +84,30 @@ namespace Scheduler_GUI
                     }
                     break;
                 case "Priority Nonpreemtive":
+                    index = Int32.Parse(main_form.no_of_processes);
+                    counter = Priority.counter;
+                    avgwait = Priority.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
+                    for (int k = 0; k < counter; k++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            drawing[k, j] = Priority.scheduler3cells[k, j];
+                        }
+                    }
                     break;
                 case "Priority Preemtive":
+                    index = Int32.Parse(main_form.no_of_processes);
+                    counter = Priority.counter;
+                    avgwait = Priority.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
+                    for (int k = 0; k < counter; k++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            drawing[k, j] = Priority.scheduler3cells[k, j];
+                        }
+                    }
                     break;
 
             }
@@ -89,55 +117,33 @@ namespace Scheduler_GUI
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
 
-            //chart1.ChartAreas["ChartArea1"].AxisY.Interval =1 ;
+            chart1.ChartAreas["ChartArea1"].AxisY.Interval =1 ;
             for (int i = 0; i < counter; i++)
             {
-                //int flag = 1;
                 series[i] = new System.Windows.Forms.DataVisualization.Charting.Series();
                 series[i].ChartArea = "ChartArea1";
                 series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeBar;
                 series[i].Legend = "Legend1";
                 series[i].Font = new System.Drawing.Font("Times", 10f);
-                series[i].Name = drawing[i, 0].ToString();
+                series[i].Name ="P"+ drawing[i, 0].ToString();
 
-                //if (i > 0)
-                //{
-                //    if (drawing[i, 1] != drawing[i - 1, 2] && i != 0)
-                //    {
-                //        chart1.Series.Add(series[i]);
-                //        chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum + (drawing[i, 2] - drawing[i, 1]) } });
-                //        chart1.Series[series[i].Name].Label = "IDEAL";
-                //        flag = 0;
-                //    }
-                //}
-                //else if (flag == 0)
-                //{
-                    if (chart1.Series.IsUniqueName(series[i].Name))
-                    {
-                        chart1.Series.Add(series[i]);
-                    //chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum + (drawing[i, 2] - drawing[i, 1]) } });
-                     chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i,1], drawing[i, 2]  } });
+                if (chart1.Series.IsUniqueName(series[i].Name))
+                {
+                    chart1.Series.Add(series[i]);
+                    chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i,1], drawing[i, 2]  } });
                     chart1.Series[series[i].Name].Label = drawing[i, 0].ToString();
-                    }
-                    else
-                    {
-                     chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i, 1], drawing[i, 2] } });
-                    //chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum + (drawing[i, 2] - drawing[i, 1]) } });
                 }
-                    sum += (drawing[i, 2] - drawing[i, 1]);
-
-                //chart1.ChartAreas[0].AxisY.CustomLabels.Add(sum - ((drawing[i, 2] - drawing[i, 1]) / 2), sum + (drawing[i, 2] - drawing[i, 1]) - ((drawing[i, 2] - drawing[i, 1]) / 2), Convert.ToString(sum));
-                chart1.ChartAreas[0].AxisY.CustomLabels.Add(0, 2 * drawing[i, 2], Convert.ToString(drawing[i, 2]));
+                else
+                {
+                    chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i, 1], drawing[i, 2] } });
+                }
+                sum += (drawing[i, 2] - drawing[i, 1]);
+               
 
                 if (i == counter - 1)
-              {
+                {
                     chart1.ChartAreas[0].AxisY.Maximum = drawing[i, 2];
-                    //chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i,2], drawing[i, 2] } });
-                    // chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum } });
                 }
-                //flag = 1;
-                //}
-
             }
 
         }
@@ -158,6 +164,11 @@ namespace Scheduler_GUI
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblWaiting_Click(object sender, EventArgs e)
         {
 
         }
