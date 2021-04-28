@@ -89,7 +89,7 @@ namespace Scheduler_GUI
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
 
-            chart1.ChartAreas["ChartArea1"].AxisY.Interval =1 ;
+            //chart1.ChartAreas["ChartArea1"].AxisY.Interval =1 ;
             for (int i = 0; i < counter; i++)
             {
                 //int flag = 1;
@@ -125,14 +125,16 @@ namespace Scheduler_GUI
                     //chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum + (drawing[i, 2] - drawing[i, 1]) } });
                 }
                     sum += (drawing[i, 2] - drawing[i, 1]);
-               
-                //chart1.ChartAreas[0].AxisY.CustomLabels.Add(sum - ((drawing[i, 2] - drawing[i, 1]) / 2), sum + (drawing[i, 2] - drawing[i, 1]) - ((drawing[i, 2] - drawing[i, 1]) / 2), Convert.ToString(sum));
 
-                /* if (i == counter - 1)
-                  {
-                      chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i,2], drawing[i, 2] } });
-                 // chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum } });
-              }*/
+                //chart1.ChartAreas[0].AxisY.CustomLabels.Add(sum - ((drawing[i, 2] - drawing[i, 1]) / 2), sum + (drawing[i, 2] - drawing[i, 1]) - ((drawing[i, 2] - drawing[i, 1]) / 2), Convert.ToString(sum));
+                chart1.ChartAreas[0].AxisY.CustomLabels.Add(0, 2 * drawing[i, 2], Convert.ToString(drawing[i, 2]));
+
+                if (i == counter - 1)
+              {
+                    chart1.ChartAreas[0].AxisY.Maximum = drawing[i, 2];
+                    //chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { drawing[i,2], drawing[i, 2] } });
+                    // chart1.Series[series[i].Name].Points.Add(new DataPoint() { AxisLabel = "Process", XValue = 1, YValues = new double[] { sum, sum } });
+                }
                 //flag = 1;
                 //}
 
