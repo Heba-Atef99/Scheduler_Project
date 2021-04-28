@@ -42,9 +42,10 @@ namespace Scheduler_GUI
                
                 no_of_processes = NoProcesses.Text;
                 type = CbSehedulerType.Text.ToString();
+                Priority form = new Priority();
                 //SJF_FCFS form = new SJF_FCFS();
 
-                //form.ShowDialog();
+                form.ShowDialog();
 
 
             }

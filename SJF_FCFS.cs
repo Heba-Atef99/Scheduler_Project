@@ -23,6 +23,8 @@ namespace Scheduler_GUI
         public int n = 0;
         public string type;
         public static int counter;
+        public static float avg_wait;
+        public float sum_wait = 0;
 
         public class sh_element
         {
@@ -158,7 +160,7 @@ namespace Scheduler_GUI
             }
 
         }
-        static void SJF_Preemptive(Process[] mat_process, List<sh_element> scheduler_history)
+        static float SJF_Preemptive(Process[] mat_process, List<sh_element> scheduler_history)
         {
             //save the array in a list to make operations on list easily
             List<Process> ready = mat_process.ToList();
@@ -370,6 +372,7 @@ namespace Scheduler_GUI
             int is_last_repeated = 0;//to check if the last element in list is repeated or not
             float first_start = get_waiting_time[0].start;
             int j = 1;
+            float avg_waiting = 0;
 
             while (get_waiting_time.Count > 1)
             {
@@ -396,6 +399,7 @@ namespace Scheduler_GUI
                 get_waiting_time.RemoveRange(0, j);
                 //update id
                 if (get_waiting_time.Count > 0) id = get_waiting_time[0].process_id;
+                avg_waiting += waiting_time;
             }
 
             //for the last element in the list
@@ -406,7 +410,11 @@ namespace Scheduler_GUI
 
                 //save that waiting time
                 Array.Find(mat_process, p => p.get_Process_ID() == id).set_Waiting_Time(waiting_time);
+                avg_waiting += waiting_time;
             }
+
+            avg_waiting /= mat_process.Length;
+            return avg_waiting;
         }
     
     public static void Swap(ref Process num1, ref Process num2)
@@ -544,6 +552,11 @@ namespace Scheduler_GUI
                     mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 2], 0, 0);
                 }
                 SJF_non_Preemptive(mat_process, scheduler_history);
+                for (int i = 0; i < index; i++)
+                {
+                    sum_wait += mat_process[i].get_Waiting_Time();
+                }
+                avg_wait = sum_wait / index;
 
                 for (int k = 0; k < index; k++)
                 {
@@ -578,8 +591,9 @@ namespace Scheduler_GUI
                     //mat_process[i] = new Process(0, 0, 0, 0, 0);
                     mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 2], 0, 0);
                 }
-                SJF_Preemptive(mat_process, scheduler_history_list);
+              avg_wait=  SJF_Preemptive(mat_process, scheduler_history_list);
                 counter = scheduler_history_list.Count;
+
                 for (int k = 0; k < counter; k++)
                 {
                     scheduler3cells[k, 0] = scheduler_history_list[k].process_id;
@@ -615,12 +629,11 @@ namespace Scheduler_GUI
                     mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 2], 0, 0);
                 }
                 First_come_first_served(mat_process, scheduler_history);
-                /* for(int k=0;k<index;k++)
-                 { for(int j=0;j<3;j++)
-                     {
-                         scheduler3cells[k, j] = scheduler_history[k, j];
-                     }
-                  }*/
+                for (int i = 0; i < index; i++)
+                {
+                    sum_wait += mat_process[i].get_Waiting_Time();
+                }
+                avg_wait = sum_wait / index;
                 scheduler3cells = scheduler_history;
                 chart frm = new chart();
                 frm.ShowDialog();

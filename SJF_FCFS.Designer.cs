@@ -48,10 +48,10 @@ namespace Scheduler_GUI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(109, 74);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(37, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 24);
+            this.label1.Size = new System.Drawing.Size(95, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Process ID";
             // 
@@ -59,10 +59,10 @@ namespace Scheduler_GUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(111, 111);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(37, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 24);
+            this.label2.Size = new System.Drawing.Size(106, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Arrival time";
             // 
@@ -70,35 +70,32 @@ namespace Scheduler_GUI
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(111, 149);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(37, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 24);
+            this.label3.Size = new System.Drawing.Size(94, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Burst time";
             // 
             // tbID
             // 
-            this.tbID.Location = new System.Drawing.Point(288, 73);
-            this.tbID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbID.Location = new System.Drawing.Point(196, 56);
             this.tbID.Name = "tbID";
-            this.tbID.Size = new System.Drawing.Size(132, 22);
+            this.tbID.Size = new System.Drawing.Size(100, 20);
             this.tbID.TabIndex = 5;
             // 
             // tbArrival
             // 
-            this.tbArrival.Location = new System.Drawing.Point(288, 110);
-            this.tbArrival.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbArrival.Location = new System.Drawing.Point(196, 89);
             this.tbArrival.Name = "tbArrival";
-            this.tbArrival.Size = new System.Drawing.Size(132, 22);
+            this.tbArrival.Size = new System.Drawing.Size(100, 20);
             this.tbArrival.TabIndex = 6;
             // 
             // tbBurst
             // 
-            this.tbBurst.Location = new System.Drawing.Point(288, 148);
-            this.tbBurst.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBurst.Location = new System.Drawing.Point(196, 120);
             this.tbBurst.Name = "tbBurst";
-            this.tbBurst.Size = new System.Drawing.Size(132, 22);
+            this.tbBurst.Size = new System.Drawing.Size(100, 20);
             this.tbBurst.TabIndex = 7;
             // 
             // dgv3cells
@@ -108,11 +105,10 @@ namespace Scheduler_GUI
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dgv3cells.Location = new System.Drawing.Point(472, 48);
-            this.dgv3cells.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv3cells.Location = new System.Drawing.Point(354, 39);
             this.dgv3cells.Name = "dgv3cells";
             this.dgv3cells.RowHeadersWidth = 51;
-            this.dgv3cells.Size = new System.Drawing.Size(461, 239);
+            this.dgv3cells.Size = new System.Drawing.Size(427, 168);
             this.dgv3cells.TabIndex = 10;
             // 
             // Column1
@@ -138,11 +134,10 @@ namespace Scheduler_GUI
             // 
             // btnInsert
             // 
-            this.btnInsert.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.Location = new System.Drawing.Point(55, 300);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInsert.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.Location = new System.Drawing.Point(38, 184);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(165, 28);
+            this.btnInsert.Size = new System.Drawing.Size(124, 23);
             this.btnInsert.TabIndex = 13;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -150,11 +145,10 @@ namespace Scheduler_GUI
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(228, 300);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(168, 184);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(193, 28);
+            this.button2.Size = new System.Drawing.Size(153, 23);
             this.button2.TabIndex = 14;
             this.button2.Text = "Show Results";
             this.button2.UseVisualStyleBackColor = true;
@@ -162,9 +156,10 @@ namespace Scheduler_GUI
             // 
             // SJF_FCFS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.BackColor = System.Drawing.Color.DarkRed;
+            this.ClientSize = new System.Drawing.Size(862, 292);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.dgv3cells);
@@ -174,9 +169,10 @@ namespace Scheduler_GUI
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
             this.Name = "SJF_FCFS";
-            this.Text = "information_input";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Information entry";
             this.Load += new System.EventHandler(this.SJF_FCFS_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgv3cells)).EndInit();
             this.ResumeLayout(false);
