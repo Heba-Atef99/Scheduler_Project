@@ -39,27 +39,30 @@ namespace Scheduler_GUI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(55, 103);
+            this.label1.Location = new System.Drawing.Point(73, 127);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 23);
+            this.label1.Size = new System.Drawing.Size(273, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Number of processes:";
             // 
             // NoProcesses
             // 
-            this.NoProcesses.Location = new System.Drawing.Point(277, 103);
+            this.NoProcesses.Location = new System.Drawing.Point(369, 127);
+            this.NoProcesses.Margin = new System.Windows.Forms.Padding(4);
             this.NoProcesses.Multiline = true;
             this.NoProcesses.Name = "NoProcesses";
-            this.NoProcesses.Size = new System.Drawing.Size(109, 23);
+            this.NoProcesses.Size = new System.Drawing.Size(144, 27);
             this.NoProcesses.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(55, 140);
+            this.label2.Location = new System.Drawing.Point(73, 172);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 23);
+            this.label2.Size = new System.Drawing.Size(233, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Type of scheduler:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -72,31 +75,34 @@ namespace Scheduler_GUI
             "FCFS",
             "SJF Nonpreemtive",
             "SJF Preemtive",
-            "Pariority Nonpreemtive",
-            "Pariority Preemtive",
+            "Priority Nonpreemtive",
+            "Priority Preemtive",
             "Round Robin"});
-            this.CbSehedulerType.Location = new System.Drawing.Point(277, 140);
+            this.CbSehedulerType.Location = new System.Drawing.Point(369, 172);
+            this.CbSehedulerType.Margin = new System.Windows.Forms.Padding(4);
             this.CbSehedulerType.Name = "CbSehedulerType";
-            this.CbSehedulerType.Size = new System.Drawing.Size(192, 27);
+            this.CbSehedulerType.Size = new System.Drawing.Size(255, 32);
             this.CbSehedulerType.TabIndex = 3;
             this.CbSehedulerType.Text = "     Select";
             this.CbSehedulerType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // main_form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(637, 318);
+            this.ClientSize = new System.Drawing.Size(849, 391);
             this.Controls.Add(this.CbSehedulerType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NoProcesses);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "main_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.main_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

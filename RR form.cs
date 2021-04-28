@@ -19,8 +19,9 @@ namespace Scheduler_GUI
         public static string Arrival;
         public static string Burst;
         public static string ID;
+        public static string Quantumvalue;
         //public static string Priority;
-        public static int Quantum;
+        public int Quantum;
         public int n = 0;
         // public string type;
         public class sh_element
@@ -28,6 +29,7 @@ namespace Scheduler_GUI
             public int process_id;
             public float start;
             public float end;
+            
 
             public void set_all(int id, float s, float e)
             {
@@ -117,8 +119,9 @@ namespace Scheduler_GUI
             int counter = 0, x; //x is the remaining no. of processes
             float total_time_taken = 0;
             int num_process = mat_process.Length;
-            Console.WriteLine("Enter Time Quantum");
-            time_quantum = Convert.ToInt32(Console.ReadLine());
+            
+           // Console.WriteLine("Enter Time Quantum");
+           // time_quantum = Convert.ToInt32();
             //sort the array of processes acc to arrival time
             Process[] sorted_mat_process = new Process[num_process];
             for (int i = 0; i < num_process; i++)
@@ -174,7 +177,26 @@ namespace Scheduler_GUI
                 }
                 else
                 {
-                    j = 0;
+                    //j = 0;
+                    int past_processes_ended = 1; // all past processes ended
+                    for (int i = j; i >= 0; i--)
+                    {
+                        if (sorted_mat_process[j].get_Burst_Time() != 0)
+                        {
+                            past_processes_ended = 0;
+
+                        }
+                    }
+                    if (past_processes_ended == 1)
+                    {
+                        total_time_taken = sorted_mat_process[j + 1].get_Arrival_Time();
+                        j++;
+                    }
+
+                    else
+                    {
+                        j = 0;
+                    }
                 }
             }
             for (int i = 0; i < counter; i++)
@@ -182,8 +204,39 @@ namespace Scheduler_GUI
                 Console.WriteLine("process id " + scheduler_history_list[i].process_id + " starts at "
                         + scheduler_history_list[i].start + " and ends at " + scheduler_history_list[i].end);
             }
-            Console.WriteLine("total time taken is " + total_time_taken);
+            // Console.WriteLine("total time taken is " + total_time_taken);
+            float total_wait = 0;
+
+            for (int i = 0; i < mat_process.Count(); i++) // loops on processes
+            {
+                float process_wait = 0; // total wait time of one process
+                int count = 0;// to check it's the first time of process in list
+                int last_index = 0; // points at the last time this process was executed
+                for (int n = 0; n < scheduler_history_list.Count; n++) // loops in scheduler_history
+                {
+
+                    //to get the first waiting time = first time process executed - arrival time
+
+                    if (mat_process[i].get_Process_ID() == scheduler_history_list[n].process_id & count == 0)
+                    {
+                        process_wait += (scheduler_history_list[n].start) - (mat_process[i].get_Arrival_Time());
+                        count = 1;
+                        last_index = n;
+                    }
+                    // to get the rest of waiting time = start(current)-end(last)
+                    else if (mat_process[i].get_Process_ID() == scheduler_history_list[n].process_id & count != 0)
+                    {
+                        process_wait += (scheduler_history_list[n].start) - (scheduler_history_list[(last_index)].end);
+                        last_index = n;
+                        count = 1;
+                    }
+
+                }
+                total_wait += process_wait;
+            }
+            float avg_wait = (total_wait) / (mat_process.Count());
             return counter;
+
         }
 
         public RR_form()
@@ -215,7 +268,7 @@ namespace Scheduler_GUI
                 tbID.Clear();
                 tbBurst.Clear();
                 tbArrival.Clear();
-                tbQuantum.Clear();
+               // tbQuantum.Clear();
             }
         }
 
@@ -227,12 +280,14 @@ namespace Scheduler_GUI
         private void RR_form_Load(object sender, EventArgs e)
         {
             index = Int32.Parse(main_form.no_of_processes);
-            
+            //Quantum = Int32.Parse(tbQuantum.Text);
         }
 
         private void btnResult_Click(object sender, EventArgs e)
         {
-            Quantum = Int32.Parse(tbQuantum.Text);
+            // Quantum = Int32.Parse(tbQuantum.Text);
+            Quantumvalue = tbQuantum.Text;
+            Quantum = Int32.Parse(Quantumvalue);
             int[,] table = new int[index, 3];
             // fill the 2D array tabel from the dataGridView
             for (int r = 0; r < dgvQuantum.Rows.Count - 1; r++)
@@ -252,7 +307,7 @@ namespace Scheduler_GUI
             for (int i = 0; i < index; i++)
             {
                 mat_process[i] = new Process(0, 0, 0, 0, 0);
-                mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 1], 0, 0);
+                mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 2], 0, 0);
 
             }
             counter=Round_Robin(mat_process, scheduler_history_list,Quantum);

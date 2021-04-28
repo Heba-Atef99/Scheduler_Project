@@ -26,10 +26,10 @@ namespace Scheduler_GUI
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(CbSehedulerType.SelectedItem=="FCFS"|| CbSehedulerType.SelectedItem == "SJF Nonpreemtive"|| CbSehedulerType.SelectedItem == "SJF Preemtive")
+            if(CbSehedulerType.SelectedItem.ToString()=="FCFS"|| CbSehedulerType.SelectedItem.ToString() == "SJF Nonpreemtive"|| CbSehedulerType.SelectedItem.ToString() == "SJF Preemtive")
             {
                 no_of_processes = NoProcesses.Text;
-                type = CbSehedulerType.Text;
+                type = CbSehedulerType.Text.ToString();
                 SJF_FCFS form = new SJF_FCFS();
                 //information_input.
                 form.ShowDialog();
@@ -37,11 +37,11 @@ namespace Scheduler_GUI
             }
             
             
-            if (CbSehedulerType.SelectedItem == "Pariority Nonpreemtive"|| CbSehedulerType.SelectedItem == "Pariority Preemtive")
+            if (CbSehedulerType.SelectedItem.ToString() == "Priority Nonpreemtive"|| CbSehedulerType.SelectedItem.ToString() == "Priority Preemtive")
             {
                
                 no_of_processes = NoProcesses.Text;
-                type = CbSehedulerType.Text;
+                type = CbSehedulerType.Text.ToString();
                 //SJF_FCFS form = new SJF_FCFS();
 
                 //form.ShowDialog();
@@ -49,16 +49,21 @@ namespace Scheduler_GUI
 
             }
 
-            if (CbSehedulerType.SelectedItem == "Round Robin")
+            if (CbSehedulerType.SelectedItem.ToString() == "Round Robin")
             {
                 no_of_processes = NoProcesses.Text;
-                //type = CbSehedulerType.Text;
+                type = CbSehedulerType.Text.ToString();
                 RR_form form = new RR_form();
 
                 form.ShowDialog();
 
 
             }
+        }
+
+        private void main_form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
