@@ -22,6 +22,7 @@ namespace Scheduler_GUI
         public static string Quantumvalue;
         //public static string Priority;
         public int Quantum;
+        public static float avg_wait;
         public int n = 0;
         // public string type;
         public class sh_element
@@ -114,7 +115,7 @@ namespace Scheduler_GUI
 
 
         }
-        static int Round_Robin(Process[] mat_process, List<sh_element> scheduler_history_list, int time_quantum)
+        static float Round_Robin(Process[] mat_process, List<sh_element> scheduler_history_list, int time_quantum)
         {
             int counter = 0, x; //x is the remaining no. of processes
             float total_time_taken = 0;
@@ -235,7 +236,7 @@ namespace Scheduler_GUI
                 total_wait += process_wait;
             }
             float avg_wait = (total_wait) / (mat_process.Count());
-            return counter;
+            return avg_wait;
 
         }
 
@@ -310,8 +311,8 @@ namespace Scheduler_GUI
                 mat_process[i] = new Process(table[i, 0], table[i, 1], table[i, 2], 0, 0);
 
             }
-            counter=Round_Robin(mat_process, scheduler_history_list,Quantum);
-
+            avg_wait=Round_Robin(mat_process, scheduler_history_list,Quantum);
+            counter = scheduler_history_list.Count;
             for (int k = 0; k < counter; k++)
             {
                 scheduler3cells[k, 0] = scheduler_history_list[k].process_id;

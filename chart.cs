@@ -16,6 +16,7 @@ namespace Scheduler_GUI
     {
         public static int counter;
         public static int index;
+        public static float avgwait;
         public static string type;
         
         public float[,] drawing = new float[100,3];
@@ -66,6 +67,8 @@ namespace Scheduler_GUI
 
                     index = Int32.Parse(main_form.no_of_processes);
                     counter = RR_form.counter;
+                    avgwait = RR_form.avg_wait;
+                    lblWaiting.Text = avgwait.ToString();
                     for (int k = 0; k < counter; k++)
                     {
                         for (int j = 0; j < 3; j++)
@@ -148,6 +151,11 @@ namespace Scheduler_GUI
         }
 
         private void chart1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
